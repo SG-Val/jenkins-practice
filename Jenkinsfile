@@ -5,6 +5,10 @@ pipeline {
         string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
     }
 
+    triggers {
+        githubPush() // This tells Jenkins to listen for a push from GitHub
+    }
+
     tools {
         maven 'Maven-3.9.11'
     }
