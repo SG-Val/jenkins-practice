@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
+    }
+
     tools {
         maven 'Maven-3.9.11'
     }
@@ -8,7 +12,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // This command will now run on the code in your repo
+                // We access the parameter using params.MESSAGE
+                echo "The user-provided message is: ${params.MESSAGE}"
                 sh 'mvn clean install'
             }
         }
