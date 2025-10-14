@@ -7,6 +7,10 @@ pipeline {
         }
     }
 
+    options {
+        disableConcurrentBuilds()
+    }
+
     parameters {
         string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
     }
