@@ -17,8 +17,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // We access the parameter using params.MESSAGE
-                echo "The user-provided message is: ${params.MESSAGE}"
+                script {
+                    // Set the build description using the environment variable
+                    currentBuild.description = "Commit: ${env.GIT_COMMIT}"
+                }
+                echo "Now building commit: ${env.GIT_COMMIT}"
                 sh 'mvn clean install'
             }
         }
