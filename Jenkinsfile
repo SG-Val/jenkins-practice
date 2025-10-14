@@ -37,6 +37,14 @@ pipeline {
         )
     }
 }
+        stage('Deploy to Production') {
+    steps {
+        input(message: 'Proceed with deployment to production?')
+        
+        // If you click 'Proceed', the steps below will run
+        sh 'echo "Deploying to production..."'
+    }
+}
         stage('Build and Archive') {
             steps {
                 executeMavenBuild()
