@@ -22,17 +22,21 @@ pipeline {
             }
         }
         stage('Run Tests in Parallel') {
-            steps {
-                parallel (
-                    "Unit Tests": {
-                        echo "Running Unit Tests..." // Steps for unit tests would go here
-                    },
-                    "Integration Tests": {
-                        echo "Running Integration Tests..." // Steps for integration tests would go here
-                    }
-                )
+    steps {
+        parallel (
+            "Unit Tests": {
+                echo "STARTING Unit Tests..."
+                sh 'sleep 5'
+                echo "ENDING Unit Tests."
+            },
+            "Integration Tests": {
+                echo "STARTING Integration Tests..."
+                sh 'sleep 5'
+                echo "ENDING Integration Tests."
             }
-        }
+        )
+    }
+}
         stage('Build and Archive') {
             steps {
                 executeMavenBuild()
