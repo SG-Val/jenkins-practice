@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
     }
-
+// A small change to trigger polling
     triggers {
         // Poll for changes every two minutes
         pollSCM('H/2 * * * *')
