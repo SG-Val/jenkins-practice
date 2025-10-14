@@ -21,21 +21,11 @@ pipeline {
                 greetUser('Sundar')
             }
         }
-        stage('Build') {
+        stage('Build and Archive') {
             steps {
-                script {
-                    // Set the build description using the environment variable
-                    currentBuild.description = "Commit: ${env.GIT_COMMIT}"
-                }
-                echo "Now building commit: ${env.GIT_COMMIT}"
-                sh 'mvn clean install'
+                executeMavenBuild()
             }
         }
     }
     
-    post {
-        success {
-            archiveArtifacts artifacts: 'target/*.jar'
-        }
-    }
 }
