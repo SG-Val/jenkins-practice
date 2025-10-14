@@ -1,18 +1,18 @@
 @Library('sample-pipeline-shared-library') _
+
 pipeline {
-    agent any
+    agent {
+        docker { 
+            image 'maven:3-jdk-11' 
+        }
+    }
 
     parameters {
         string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
     }
-// A small change to trigger polling
-    triggers {
-        // Poll for changes every two minutes
-        pollSCM('H/2 * * * *')
-    }
 
-    tools {
-        maven 'Maven-3.9.11'
+    triggers {
+        pollSCM('H/2 * * * *')
     }
 
     stages {
@@ -27,5 +27,4 @@ pipeline {
             }
         }
     }
-    
 }
