@@ -6,7 +6,8 @@ pipeline {
     }
 
     triggers {
-        githubPush() // This tells Jenkins to listen for a push from GitHub
+        // Poll for changes every two minutes
+        pollSCM('H/2 * * * *')
     }
 
     tools {
