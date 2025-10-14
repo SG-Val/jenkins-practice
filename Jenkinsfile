@@ -1,3 +1,4 @@
+@Library('sample-pipeline-shared-library') _
 pipeline {
     agent any
 
@@ -15,6 +16,11 @@ pipeline {
     }
 
     stages {
+        stage('Test Library') {
+            steps {
+                greetUser('Sundar')
+            }
+        }
         stage('Build') {
             steps {
                 script {
