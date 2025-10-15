@@ -1,10 +1,14 @@
 @Library('sample-pipeline-shared-library') _
 
 pipeline {
-    // Run on our newly labeled agent
-    agent {
-        label 'my-linux-agent'
+   agent {
+    // First, select the node
+    label 'my-linux-agent'
+    // Then, specify the container to run on that node
+    docker { 
+        image 'maven:3-jdk-11' 
     }
+}
 
     parameters {
         string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
