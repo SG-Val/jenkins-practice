@@ -2,13 +2,12 @@
 
 pipeline {
    agent {
-    // First, select the node
-    label 'my-linux-agent'
-    // Then, specify the container to run on that node
-    docker { 
-        image 'maven:3-jdk-11' 
+        docker { 
+            image 'maven:3-jdk-11'
+            // The label goes inside the docker block
+            label 'my-linux-agent'
+        }
     }
-}
 
     parameters {
         string(name: 'MESSAGE', defaultValue: 'Hello', description: 'The message to print')
