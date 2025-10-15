@@ -52,5 +52,14 @@ pipeline {
                 executeMavenBuild()
             }
         }
+       stage('Call GitHub API') {
+            steps {
+                withCredentials([string(credentialsId: 'sample-github-token', variable: 'GITHUB_TOKEN')]) {
+                    
+                    // This command uses the secret token to make an authenticated API call
+                    sh 'curl -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/SG-Val/jenkins-practice'
+                }
+            }
+        }
     }
 }
