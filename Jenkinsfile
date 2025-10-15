@@ -1,10 +1,9 @@
 @Library('sample-pipeline-shared-library') _
 
 pipeline {
+    // Run on our newly labeled agent
     agent {
-        docker { 
-            image 'maven:3-jdk-11' 
-        }
+        label 'my-linux-agent'
     }
 
     parameters {
